@@ -1,0 +1,9 @@
+<svg width="600" height="200" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="200" fill="white"/>
+  <text x="20" y="110" font-family="Arial, sans-serif" font-size="64" fill="#0C233C">Parl</text>
+  <text x="190" y="110" font-family="Arial, sans-serif" font-size="64" fill="#00B8F5">Aid</text>
+  <text x="350" y="70" font-family="Arial, sans-serif" font-size="20" fill="#00B8F5">TM</text>
+  <text x="20" y="160" font-family="Arial, sans-serif" font-size="24" fill="#666666">
+    <tspan fill="#00B8F5">Get paid</tspan>, even when you miss.
+  </text>
+</svg>

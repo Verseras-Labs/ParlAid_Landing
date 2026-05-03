@@ -1,0 +1,6 @@
+<svg width="500" height="120" viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="120" fill="white"/>
+  <text x="10" y="80" font-family="Arial, sans-serif" font-size="64" fill="#0C233C">Parl</text>
+  <text x="170" y="80" font-family="Arial, sans-serif" font-size="64" fill="#00B8F5">Aid</text>
+  <text x="330" y="50" font-family="Arial, sans-serif" font-size="18" fill="#00B8F5">TM</text>
+</svg>

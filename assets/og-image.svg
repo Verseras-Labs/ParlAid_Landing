@@ -1,0 +1,29 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0C233C"/>
+
+  <!-- subtle cyan glow on the right edge -->
+  <defs>
+    <radialGradient id="glow" cx="100%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#00B8F5" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#00B8F5" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- icon mark, top-left -->
+  <g transform="translate(80,80)">
+    <rect width="160" height="160" rx="28" fill="#00338D"/>
+    <text x="32" y="120" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="100" fill="white">P</text>
+    <text x="76" y="120" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="100" fill="#00B8F5">A</text>
+    <circle cx="98" cy="130" r="6" fill="#00B8F5"/>
+  </g>
+
+  <!-- wordmark + tagline -->
+  <g transform="translate(80,310)">
+    <text x="0" y="80" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="120" letter-spacing="-4" fill="white">Parl<tspan fill="#00B8F5">Aid</tspan></text>
+    <text x="0" y="170" font-family="Inter, Arial, sans-serif" font-weight="600" font-size="44" fill="#9FB4D1">
+      <tspan fill="#00B8F5">Get paid</tspan>, even when you miss.
+    </text>
+    <text x="0" y="230" font-family="Inter, Arial, sans-serif" font-weight="500" font-size="22" fill="#6B85A8" letter-spacing="2">PARLAY RISK MANAGEMENT &#183; K-OF-N COVERAGE</text>
+  </g>
+</svg>

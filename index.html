@@ -176,22 +176,50 @@
 
   .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,184,245,0.35); }
 
-  .hero-note {
-    margin-top: 1rem;
-    font-size: 0.82rem;
-    color: var(--text-3);
-    animation: fadeUp 0.4s ease-out 0.2s both;
-  }
-
   @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 
-  /* --- SPORTS STRIP --- */
+  /* --- SPORTS STRIP (auto-scrolling marquee) --- */
   .sports-strip {
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     background: var(--bg-soft);
-    padding: 1.2rem 1.5rem;
-    display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;
+    padding: 1.2rem 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* edge fade so chips appear/disappear softly */
+  .sports-strip::before,
+  .sports-strip::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 4rem;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .sports-strip::before { left: 0;   background: linear-gradient(to right, var(--bg-soft), transparent); }
+  .sports-strip::after  { right: 0;  background: linear-gradient(to left,  var(--bg-soft), transparent); }
+
+  .sports-track {
+    display: flex;
+    gap: 0.5rem;
+    width: max-content;
+    animation: marquee 60s linear infinite;
+  }
+
+  .sports-strip:hover .sports-track { animation-play-state: paused; }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sports-track { animation: none; flex-wrap: wrap; justify-content: center; padding: 0 1.5rem; }
+    .sports-strip { overflow-x: auto; }
+    .sports-strip::before, .sports-strip::after { display: none; }
+    .sports-track .dup { display: none; }
   }
 
   .s-chip {
@@ -200,6 +228,8 @@
     background: white; border: 1px solid var(--border);
     color: var(--text-2);
     display: inline-flex; align-items: center; gap: 0.4rem;
+    flex-shrink: 0;
+    white-space: nowrap;
   }
 
   .s-chip.s-more {
@@ -287,18 +317,55 @@
     color: var(--text-2);
   }
 
+  /* Steps carousel — one panel at a time, scroll-snap horizontal */
+  .steps-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: 0 -1.5rem;
+  }
+  .steps-carousel::-webkit-scrollbar { display: none; }
+
   .step {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     align-items: center;
-    margin-bottom: 4rem;
+    padding: 0 1.5rem;
   }
-
-  .step:last-child { margin-bottom: 0; }
 
   .step.flip { direction: rtl; }
   .step.flip > * { direction: ltr; }
+
+  .steps-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.7rem;
+    margin-top: 2.5rem;
+  }
+
+  .steps-dots .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.2s;
+  }
+
+  .steps-dots .dot.active {
+    background: var(--cyan);
+    transform: scale(1.4);
+  }
+
+  .steps-dots .dot:hover { background: var(--text-3); }
+  .steps-dots .dot.active:hover { background: var(--cyan); }
 
   .step-badge {
     display: inline-flex;
@@ -732,29 +799,49 @@
     Trade the lofty, all-or-nothing parlay payout for guaranteed wins with meaningful ROI when you hit your threshold.
   </p>
   <a href="https://app.parlaid.app" class="hero-btn">Try ParlAid&trade; Free &rarr;</a>
-  <div class="hero-note">Place at 13 sportsbooks in one click &mdash; FanDuel, DraftKings, BetMGM, Caesars &amp; more</div>
 </section>
 
-<!-- SPORTS -->
-<div class="sports-strip">
-  <span class="s-chip"> 🏈 NFL</span>
-  <span class="s-chip"> 🏀 NBA</span>
-  <span class="s-chip"> ⚾ MLB</span>
-  <span class="s-chip"> 🏒 NHL</span>
-  <span class="s-chip"> 🏀 WNBA</span>
-  <span class="s-chip"> 🏈 NCAAF</span>
-  <span class="s-chip"> 🏀 NCAAB</span>
-  <span class="s-chip"> 🏀 NCAAW</span>
-  <span class="s-chip"> ⚽ EPL</span>
-  <span class="s-chip"> ⚽ La Liga</span>
-  <span class="s-chip"> ⚽ Serie A</span>
-  <span class="s-chip"> ⚽ Bundesliga</span>
-  <span class="s-chip"> ⚽ MLS</span>
-  <span class="s-chip"> 🥊 UFC</span>
-  <span class="s-chip"> 🎾 ATP</span>
-  <span class="s-chip"> 🎾 WTA</span>
-  <span class="s-chip"> ⛳ PGA</span>
-  <span class="s-chip s-more">+ 25 more leagues</span>
+<!-- SPORTS (auto-scrolling marquee, duplicated for seamless loop) -->
+<div class="sports-strip" aria-label="Sports leagues covered by ParlAid">
+  <div class="sports-track">
+    <span class="s-chip"> 🏈 NFL</span>
+    <span class="s-chip"> 🏀 NBA</span>
+    <span class="s-chip"> ⚾ MLB</span>
+    <span class="s-chip"> 🏒 NHL</span>
+    <span class="s-chip"> 🏀 WNBA</span>
+    <span class="s-chip"> 🏈 NCAAF</span>
+    <span class="s-chip"> 🏀 NCAAB</span>
+    <span class="s-chip"> 🏀 NCAAW</span>
+    <span class="s-chip"> ⚽ EPL</span>
+    <span class="s-chip"> ⚽ La Liga</span>
+    <span class="s-chip"> ⚽ Serie A</span>
+    <span class="s-chip"> ⚽ Bundesliga</span>
+    <span class="s-chip"> ⚽ MLS</span>
+    <span class="s-chip"> 🥊 UFC</span>
+    <span class="s-chip"> 🎾 ATP</span>
+    <span class="s-chip"> 🎾 WTA</span>
+    <span class="s-chip"> ⛳ PGA</span>
+    <span class="s-chip s-more">+ 25 more leagues</span>
+    <!-- Duplicate set for seamless infinite loop. Hidden from a11y. -->
+    <span class="s-chip dup" aria-hidden="true"> 🏈 NFL</span>
+    <span class="s-chip dup" aria-hidden="true"> 🏀 NBA</span>
+    <span class="s-chip dup" aria-hidden="true"> ⚾ MLB</span>
+    <span class="s-chip dup" aria-hidden="true"> 🏒 NHL</span>
+    <span class="s-chip dup" aria-hidden="true"> 🏀 WNBA</span>
+    <span class="s-chip dup" aria-hidden="true"> 🏈 NCAAF</span>
+    <span class="s-chip dup" aria-hidden="true"> 🏀 NCAAB</span>
+    <span class="s-chip dup" aria-hidden="true"> 🏀 NCAAW</span>
+    <span class="s-chip dup" aria-hidden="true"> ⚽ EPL</span>
+    <span class="s-chip dup" aria-hidden="true"> ⚽ La Liga</span>
+    <span class="s-chip dup" aria-hidden="true"> ⚽ Serie A</span>
+    <span class="s-chip dup" aria-hidden="true"> ⚽ Bundesliga</span>
+    <span class="s-chip dup" aria-hidden="true"> ⚽ MLS</span>
+    <span class="s-chip dup" aria-hidden="true"> 🥊 UFC</span>
+    <span class="s-chip dup" aria-hidden="true"> 🎾 ATP</span>
+    <span class="s-chip dup" aria-hidden="true"> 🎾 WTA</span>
+    <span class="s-chip dup" aria-hidden="true"> ⛳ PGA</span>
+    <span class="s-chip s-more dup" aria-hidden="true">+ 25 more leagues</span>
+  </div>
 </div>
 
 <!-- THE PROBLEM -->
@@ -783,6 +870,7 @@
       <p>Three steps. No spreadsheets, no setup.</p>
     </div>
 
+    <div class="steps-carousel">
     <!-- STEP 1 -->
     <div class="step anim">
       <div>
@@ -933,6 +1021,13 @@
         </div>
       </div>
     </div>
+    </div><!-- /.steps-carousel -->
+
+    <div class="steps-dots" role="tablist" aria-label="Step navigation">
+      <button type="button" class="dot active" aria-label="Step 1" data-step="0"></button>
+      <button type="button" class="dot" aria-label="Step 2" data-step="1"></button>
+      <button type="button" class="dot" aria-label="Step 3" data-step="2"></button>
+    </div>
 
   </div>
 </section>
@@ -1007,10 +1102,36 @@
 </footer>
 
 <script>
+  // Section fade-in animations
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
   }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.anim').forEach(el => obs.observe(el));
+
+  // Steps carousel — sync dots with scroll position; click dots to scroll
+  (function () {
+    const carousel = document.querySelector('.steps-carousel');
+    if (!carousel) return;
+    const steps = Array.from(carousel.querySelectorAll('.step'));
+    const dots = Array.from(document.querySelectorAll('.steps-dots .dot'));
+    if (!steps.length || !dots.length) return;
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        steps[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      });
+    });
+
+    const stepObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting && e.intersectionRatio >= 0.5) {
+          const idx = steps.indexOf(e.target);
+          dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        }
+      });
+    }, { root: carousel, threshold: [0.5] });
+    steps.forEach(s => stepObs.observe(s));
+  })();
 </script>
 
 </body>

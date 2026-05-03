@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ParlAid&trade; &mdash; Get paid, even when you miss.</title>
-<meta name="description" content="ParlAid&trade; is parlay risk management. Pick your games, tell us how many need to hit, and we generate the minimum ticket set that guarantees a winner. Real cash, even when picks miss.">
+<meta name="description" content="ParlAid&trade; — Get paid, even when you miss. Trade the lofty, all-or-nothing parlay payout for guaranteed wins with meaningful ROI when you hit your threshold.">
 <link rel="canonical" href="https://parlaid.app">
 
 <!-- Favicons -->
@@ -18,7 +18,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://parlaid.app/">
 <meta property="og:title" content="ParlAid™ — Get paid, even when you miss.">
-<meta property="og:description" content="Parlay risk management. Pick your games, set how many need to hit, and ParlAid generates the minimum ticket set that guarantees a winner.">
+<meta property="og:description" content="Trade the lofty, all-or-nothing parlay payout for guaranteed wins with meaningful ROI when you hit your threshold. Patent-pending K-of-N covering codes.">
 <meta property="og:image" content="https://parlaid.app/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -27,7 +27,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ParlAid™ — Get paid, even when you miss.">
-<meta name="twitter:description" content="Parlay risk management. Pick your games, set how many need to hit, and ParlAid generates the minimum ticket set that guarantees a winner.">
+<meta name="twitter:description" content="Trade the lofty, all-or-nothing parlay payout for guaranteed wins with meaningful ROI when you hit your threshold. Patent-pending K-of-N covering codes.">
 <meta name="twitter:image" content="https://parlaid.app/assets/og-image.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -96,6 +96,16 @@
     top: -0.7em;
     position: relative;
   }
+
+  .nav-right { display: flex; align-items: center; gap: 1.4rem; }
+
+  .nav-link {
+    font-size: 0.88rem; font-weight: 600;
+    color: var(--text-2); text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover { color: var(--navy); }
 
   .nav-cta {
     background: var(--cyan); color: var(--navy);
@@ -192,6 +202,13 @@
     display: inline-flex; align-items: center; gap: 0.4rem;
   }
 
+  .s-chip.s-more {
+    background: var(--cyan-soft);
+    border-color: var(--cyan-soft);
+    color: var(--blue);
+    font-weight: 700;
+  }
+
   /* --- THE PROBLEM --- */
   .problem {
     padding: 5rem 1.5rem;
@@ -213,6 +230,7 @@
     font-size: 1.05rem;
     color: var(--text-2);
     line-height: 1.7;
+    text-align: left;
   }
 
   .problem-stat {
@@ -267,6 +285,15 @@
   .steps-header p {
     font-size: 1rem;
     color: var(--text-2);
+  }
+
+  .patent-note {
+    font-size: 0.72rem;
+    color: var(--text-3);
+    font-weight: 600;
+    margin-top: 0.7rem;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
   }
 
   .step {
@@ -431,29 +458,56 @@
     margin-bottom: 2rem;
   }
 
-  .example-card {
-    background: var(--bg-soft);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2rem;
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
     text-align: left;
   }
 
-  .ex-row {
+  .compare-col {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.6rem 1.4rem;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem 0;
-    border-bottom: 1px solid var(--border);
+    flex-direction: column;
   }
 
-  .ex-row:last-child { border-bottom: none; }
+  .compare-col.win {
+    background: white;
+    border-color: var(--cyan);
+    box-shadow: 0 8px 24px rgba(0,184,245,0.12);
+  }
 
-  .ex-label { font-size: 0.95rem; color: var(--text-2); }
-  .ex-value { font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 700; color: var(--navy); }
-  .ex-value.green { color: var(--green); }
-  .ex-value.cyan { color: var(--cyan); }
-  .ex-value.blue { color: var(--blue); }
+  .compare-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-3);
+    margin-bottom: 0.6rem;
+  }
+
+  .compare-col.win .compare-tag { color: var(--cyan); }
+
+  .compare-payout {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--text-3);
+    margin-bottom: 0.4rem;
+  }
+
+  .compare-col.win .compare-payout { color: var(--green); }
+
+  .compare-foot {
+    font-size: 0.9rem;
+    color: var(--text-2);
+    line-height: 1.45;
+    margin-top: 0.4rem;
+  }
 
   /* --- CTA --- */
   .cta-section {
@@ -525,6 +579,17 @@
 
   .footer-text a { color: var(--cyan); text-decoration: none; }
 
+  .footer-rg {
+    font-size: 0.74rem;
+    color: rgba(255,255,255,0.45);
+    max-width: 720px;
+    margin: 0.6rem auto 0;
+    line-height: 1.5;
+  }
+
+  .footer-rg a { color: rgba(255,255,255,0.7); text-decoration: underline; }
+  .footer-rg a:hover { color: var(--cyan); }
+
   /* --- ANIM --- */
   .anim {
     opacity: 0; transform: translateY(24px);
@@ -537,8 +602,13 @@
     .step, .step.flip { grid-template-columns: 1fr; gap: 1.5rem; direction: ltr; }
     .step > * { direction: ltr; }
     .problem-stat { gap: 2rem; }
-    .ex-row { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
+    .compare-grid { grid-template-columns: 1fr; }
     .footer-links { flex-wrap: wrap; gap: 1rem; }
+    .hero { padding-bottom: 2.5rem; }
+  }
+
+  @media (max-width: 520px) {
+    .nav-link { display: none; }
   }
 </style>
 </head>
@@ -550,7 +620,10 @@
     <img class="mark" src="/assets/parlaid_app_icon.png" alt="">
     <span class="wordmark">Parl<span class="aid">Aid</span><sup>&trade;</sup></span>
   </a>
-  <a href="https://app.parlaid.app" class="nav-cta">Try ParlAid&trade;</a>
+  <div class="nav-right">
+    <a href="#how-it-works" class="nav-link">How it works</a>
+    <a href="https://app.parlaid.app" class="nav-cta">Try ParlAid&trade;</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -561,7 +634,7 @@
     Trade the lofty, all-or-nothing parlay payout for guaranteed wins with meaningful ROI when you hit your threshold.
   </p>
   <a href="https://app.parlaid.app" class="hero-btn">Try ParlAid&trade; Free &rarr;</a>
-  <div class="hero-note">Works with FanDuel, DraftKings, BetMGM, Caesars &amp; more</div>
+  <div class="hero-note">Place at 13 sportsbooks in one click &mdash; FanDuel, DraftKings, BetMGM, Caesars &amp; more</div>
 </section>
 
 <!-- SPORTS -->
@@ -583,6 +656,7 @@
   <span class="s-chip"> 🎾 ATP</span>
   <span class="s-chip"> 🎾 WTA</span>
   <span class="s-chip"> ⛳ PGA</span>
+  <span class="s-chip s-more">+ 25 more leagues</span>
 </div>
 
 <!-- THE PROBLEM -->
@@ -597,8 +671,8 @@
       <div class="stat-label">six-leg parlays lose</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num good">Covered</div>
-      <div class="stat-label">with ParlAid&trade;</div>
+      <div class="stat-num good">4-of-6</div>
+      <div class="stat-label">is enough with ParlAid&trade;</div>
     </div>
   </div>
 </section>
@@ -608,7 +682,8 @@
   <div class="steps-inner">
     <div class="steps-header">
       <h2>It's really just 3 steps</h2>
-      <p>No complicated math. No spreadsheets. Just pick, set, and go.</p>
+      <p>Three steps. No spreadsheets, no setup.</p>
+      <p class="patent-note">Patent-pending K-of-N covering codes</p>
     </div>
 
     <!-- STEP 1 -->
@@ -766,37 +841,19 @@
 </section>
 
 <!-- QUICK EXAMPLE -->
-<section class="example anim">
-  <h2>Here's a real example</h2>
-  <p>You like 3 NBA games tonight. You're confident about 2 of them. Here's what ParlAid&trade; does:</p>
-  <div class="example-card">
-    <div class="ex-row">
-      <span class="ex-label">Your picks</span>
-      <span class="ex-value">3 games</span>
+<section class="example anim" id="example">
+  <h2>Why it matters</h2>
+  <p>Same 3 picks. Same $400 in. Two of three legs hit, one misses.</p>
+  <div class="compare-grid">
+    <div class="compare-col">
+      <div class="compare-tag">Traditional parlay</div>
+      <div class="compare-payout">$0</div>
+      <div class="compare-foot">All-or-nothing. 2 of 3 still loses the ticket.</div>
     </div>
-    <div class="ex-row">
-      <span class="ex-label">Need to get right</span>
-      <span class="ex-value cyan">2 out of 3</span>
-    </div>
-    <div class="ex-row">
-      <span class="ex-label">Wager per ticket</span>
-      <span class="ex-value">$100</span>
-    </div>
-    <div class="ex-row">
-      <span class="ex-label">Tickets generated</span>
-      <span class="ex-value">4</span>
-    </div>
-    <div class="ex-row">
-      <span class="ex-label">Total investment</span>
-      <span class="ex-value">$400</span>
-    </div>
-    <div class="ex-row">
-      <span class="ex-label">Max payout</span>
-      <span class="ex-value green">$701.93</span>
-    </div>
-    <div class="ex-row">
-      <span class="ex-label">ROI</span>
-      <span class="ex-value green">75%</span>
+    <div class="compare-col win">
+      <div class="compare-tag">With ParlAid&trade;</div>
+      <div class="compare-payout">$701.93</div>
+      <div class="compare-foot">+75% ROI. One ticket cashes when any 2 of 3 hit.</div>
     </div>
   </div>
 </section>
@@ -811,11 +868,13 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-links">
-    <a href="#partners">For partners</a>
-    <a href="#press">Press kit</a>
+    <a href="#how-it-works">How it works</a>
+    <a href="mailto:partners@parlaid.app">For partners</a>
+    <a href="mailto:press@parlaid.app">Press</a>
     <a href="https://app.parlaid.app">Open the app</a>
   </div>
-  <div class="footer-text">ParlAid&trade; &mdash; powered by <a href="https://verseras.com">Verseras Labs Inc.</a> All rights reserved. This platform is meant for entertainment purposes only. ParlAid&trade; is intended for adult users that are 21+ only.</div>
+  <div class="footer-text">&copy; 2026 <a href="https://verseras.com">Verseras Labs Inc.</a> All rights reserved. ParlAid&trade; is a product of Verseras Labs Inc. This platform is meant for entertainment purposes only. ParlAid&trade; is intended for adult users that are 21+ only.</div>
+  <div class="footer-rg">If you or someone you know has a gambling problem, call <a href="tel:1-800-426-2537">1-800-GAMBLER</a> or visit <a href="https://www.ncpgambling.org" target="_blank" rel="noopener">ncpgambling.org</a>.</div>
 </footer>
 
 <script>

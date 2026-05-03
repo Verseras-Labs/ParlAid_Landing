@@ -482,22 +482,41 @@
 
   .compare-col.win .compare-tag { color: var(--cyan); }
 
-  .compare-payout {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 2.4rem;
-    font-weight: 800;
-    line-height: 1;
-    color: var(--text-3);
-    margin-bottom: 0.4rem;
+  .compare-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.92rem;
   }
 
-  .compare-col.win .compare-payout { color: var(--green); }
+  .compare-row:last-of-type { border-bottom: none; padding-bottom: 0; }
+
+  .compare-row .lbl { color: var(--text-2); }
+
+  .compare-row .val {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .compare-row.headline {
+    padding-top: 0.9rem;
+  }
+
+  .compare-row.headline .val {
+    font-size: 1.55rem;
+    color: var(--text-3);
+  }
+
+  .compare-col.win .compare-row.headline .val { color: var(--green); }
 
   .compare-foot {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-2);
-    line-height: 1.45;
-    margin-top: 0.4rem;
+    line-height: 1.5;
+    margin-top: 1rem;
   }
 
   /* --- CTA --- */
@@ -858,17 +877,21 @@
 <!-- QUICK EXAMPLE -->
 <section class="example anim" id="example">
   <h2>Why it matters</h2>
-  <p>Same 3 picks. Same $400 in. Two of three legs hit, one misses.</p>
+  <p>You like 3 NBA games tonight. You wager $400 on them. 2 of 3 legs hit, 1 misses. Here&rsquo;s what each approach pays.</p>
   <div class="compare-grid">
     <div class="compare-col">
       <div class="compare-tag">Traditional parlay</div>
-      <div class="compare-payout">$0</div>
-      <div class="compare-foot">All-or-nothing. 2 of 3 still loses the ticket.</div>
+      <div class="compare-row"><span class="lbl">Wager</span><span class="val">$400 on 1 ticket</span></div>
+      <div class="compare-row headline"><span class="lbl">Cash returned</span><span class="val">$0</span></div>
+      <div class="compare-row"><span class="lbl">Net</span><span class="val">&minus;$400</span></div>
+      <div class="compare-foot">All your money on a single 3-leg parlay. One miss kills it.</div>
     </div>
     <div class="compare-col win">
       <div class="compare-tag">With ParlAid&trade;</div>
-      <div class="compare-payout">$701.93</div>
-      <div class="compare-foot">+75% ROI. One ticket cashes when any 2 of 3 hit.</div>
+      <div class="compare-row"><span class="lbl">Wager</span><span class="val">$100 &times; 4 tickets</span></div>
+      <div class="compare-row headline"><span class="lbl">Cash returned</span><span class="val">$701.93</span></div>
+      <div class="compare-row"><span class="lbl">Net</span><span class="val">+$301.93 &middot; +75% ROI</span></div>
+      <div class="compare-foot">ParlAid spreads the same $400 across 4 tickets covering every 2-of-3 combination. When any 2 hit, one ticket cashes.</div>
     </div>
   </div>
 </section>

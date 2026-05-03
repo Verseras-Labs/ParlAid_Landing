@@ -72,8 +72,31 @@
     border-bottom: 1px solid var(--border);
   }
 
-  .logo { display: flex; align-items: center; text-decoration: none; }
-  .logo img { height: 28px; width: auto; display: block; }
+  .logo {
+    display: flex; align-items: center; gap: 0.55rem;
+    text-decoration: none;
+  }
+  .logo .mark {
+    width: 32px; height: 32px; border-radius: 8px;
+    display: block; flex-shrink: 0;
+  }
+  .logo .wordmark {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 1.35rem;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--navy);
+  }
+  .logo .wordmark .aid { color: var(--cyan); }
+  .logo .wordmark sup {
+    font-size: 0.5em;
+    font-weight: 700;
+    color: var(--cyan);
+    margin-left: 0.05em;
+    top: -0.7em;
+    position: relative;
+  }
 
   .nav-cta {
     background: var(--cyan); color: var(--navy);
@@ -86,10 +109,19 @@
 
   /* --- HERO --- */
   .hero {
-    padding: 8rem 1.5rem 4rem;
+    padding: 7rem 1.5rem 4rem;
     text-align: center;
     max-width: 760px;
     margin: 0 auto;
+  }
+
+  .hero-mark {
+    width: 88px; height: 88px;
+    border-radius: 20px;
+    margin: 0 auto 1.6rem;
+    display: block;
+    box-shadow: 0 12px 32px rgba(12,35,60,0.18);
+    animation: fadeUp 0.4s ease-out both;
   }
 
   h1 {
@@ -505,13 +537,15 @@
 <!-- NAV -->
 <nav>
   <a href="https://parlaid.app" class="logo" aria-label="ParlAid home">
-    <img src="/assets/parlaid_wordmark.svg" alt="ParlAid">
+    <img class="mark" src="/assets/parlaid_icon.svg" alt="">
+    <span class="wordmark">Parl<span class="aid">Aid</span><sup>&trade;</sup></span>
   </a>
   <a href="https://app.parlaid.app" class="nav-cta">Try ParlAid&trade;</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
+  <img class="hero-mark" src="/assets/parlaid_icon.svg" alt="ParlAid">
   <h1><span class="accent">Get paid,</span><br>even when<br>you miss.</h1>
   <p class="hero-sub">
     Pick your games. Tell ParlAid&trade; how many need to hit. We generate the minimum ticket set that guarantees a winner &mdash; the K-of-N covering math, done for you.

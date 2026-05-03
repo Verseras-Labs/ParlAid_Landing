@@ -482,41 +482,104 @@
 
   .compare-col.win .compare-tag { color: var(--cyan); }
 
-  .compare-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 0.55rem 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.92rem;
-  }
+  .compare-col { text-align: center; padding: 2rem 1.6rem; }
 
-  .compare-row:last-of-type { border-bottom: none; padding-bottom: 0; }
-
-  .compare-row .lbl { color: var(--text-2); }
-
-  .compare-row .val {
+  .compare-mega {
     font-family: 'JetBrains Mono', monospace;
-    font-weight: 700;
-    color: var(--navy);
-  }
-
-  .compare-row.headline {
-    padding-top: 0.9rem;
-  }
-
-  .compare-row.headline .val {
-    font-size: 1.55rem;
+    font-size: clamp(2.6rem, 7vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1;
     color: var(--text-3);
+    margin: 0.6rem 0 0.4rem;
   }
 
-  .compare-col.win .compare-row.headline .val { color: var(--green); }
+  .compare-col.win .compare-mega { color: var(--green); }
+
+  .compare-sub {
+    font-size: 0.72rem;
+    color: var(--text-3);
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+  }
+
+  .compare-net {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 0.4rem 0.85rem;
+    border-radius: 100px;
+    margin-bottom: 1.4rem;
+  }
+
+  .compare-net.negative {
+    background: rgba(239,68,68,0.10);
+    color: var(--red);
+  }
+
+  .compare-net.positive {
+    background: var(--green-light);
+    color: var(--green);
+  }
 
   .compare-foot {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--text-2);
-    line-height: 1.5;
-    margin-top: 1rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* --- DISTRIBUTION CALLOUT --- */
+  .extras {
+    margin-top: 2.5rem;
+    text-align: center;
+    padding: 2rem 1.6rem;
+    background: var(--navy);
+    border-radius: 16px;
+    color: white;
+  }
+
+  .extras-headline {
+    font-size: clamp(1.2rem, 2.6vw, 1.5rem);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .extras-headline .emph { color: var(--cyan); }
+
+  .extras-sub {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.55;
+    max-width: 560px;
+    margin: 0 auto 1.4rem;
+  }
+
+  .extras-books {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .book-chip {
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.32rem 0.7rem;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.9);
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .book-chip.more {
+    background: var(--cyan);
+    color: var(--navy);
+    border-color: var(--cyan);
   }
 
   /* --- CTA --- */
@@ -877,21 +940,36 @@
 <!-- QUICK EXAMPLE -->
 <section class="example anim" id="example">
   <h2>Why it matters</h2>
-  <p>You like 3 NBA games. $100 per ticket. 2 of 3 hit, 1 misses. Here&rsquo;s what each approach pays.</p>
+  <p>You like 3 NBA games. $100 per ticket. 2 of 3 hit, 1 misses.</p>
   <div class="compare-grid">
     <div class="compare-col">
       <div class="compare-tag">Traditional parlay</div>
-      <div class="compare-row"><span class="lbl">Wager</span><span class="val">$100 on 1 ticket</span></div>
-      <div class="compare-row headline"><span class="lbl">Cash returned</span><span class="val">$0</span></div>
-      <div class="compare-row"><span class="lbl">Net</span><span class="val">&minus;$100</span></div>
-      <div class="compare-foot">All on a single 3-leg parlay. One miss kills the ticket.</div>
+      <div class="compare-mega">$0</div>
+      <div class="compare-sub">Cash returned</div>
+      <div class="compare-net negative">&minus;$100 net</div>
+      <div class="compare-foot">$100 on a single 3-leg parlay. One miss kills the ticket.</div>
     </div>
     <div class="compare-col win">
       <div class="compare-tag">With ParlAid&trade;</div>
-      <div class="compare-row"><span class="lbl">Wager</span><span class="val">$100 &times; 4 tickets</span></div>
-      <div class="compare-row headline"><span class="lbl">Cash returned</span><span class="val">$701.93</span></div>
-      <div class="compare-row"><span class="lbl">Net</span><span class="val">+$301.93 &middot; +75% ROI</span></div>
-      <div class="compare-foot">4 tickets cover every 2-of-3 combination. When any 2 hit, one ticket cashes.</div>
+      <div class="compare-mega">$701.93</div>
+      <div class="compare-sub">Cash returned</div>
+      <div class="compare-net positive">+$301.93 net &middot; +75% ROI</div>
+      <div class="compare-foot">$100 &times; 4 tickets covering every 2-of-3 combination. When any 2 hit, one ticket cashes.</div>
+    </div>
+  </div>
+
+  <div class="extras">
+    <div class="extras-headline">Then we <span class="emph">place each ticket</span> at the best odds.</div>
+    <div class="extras-sub">ParlAid scans 13 partnered sportsbooks for each ticket and routes you to the one with the best price. One tap per ticket &mdash; no copying numbers between apps.</div>
+    <div class="extras-books">
+      <span class="book-chip">FanDuel</span>
+      <span class="book-chip">DraftKings</span>
+      <span class="book-chip">BetMGM</span>
+      <span class="book-chip">Caesars</span>
+      <span class="book-chip">ESPN BET</span>
+      <span class="book-chip">BetRivers</span>
+      <span class="book-chip">Fanatics</span>
+      <span class="book-chip more">+ 6 more</span>
     </div>
   </div>
 </section>

@@ -312,6 +312,8 @@
   }
 
   /* Steps carousel — one panel at a time, scroll-snap horizontal */
+  .steps-frame { position: relative; }
+
   .steps-carousel {
     display: flex;
     overflow-x: auto;
@@ -322,6 +324,53 @@
     margin: 0 -1.5rem;
   }
   .steps-carousel::-webkit-scrollbar { display: none; }
+
+  .steps-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid var(--border);
+    color: var(--navy);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    transition: opacity 0.2s, background 0.2s, color 0.2s, box-shadow 0.2s;
+    z-index: 5;
+    box-shadow: 0 4px 14px rgba(12,35,60,0.06);
+    padding: 0;
+  }
+
+  .steps-arrow svg { width: 20px; height: 20px; display: block; }
+
+  .steps-arrow:hover {
+    opacity: 1;
+    color: var(--cyan);
+    box-shadow: 0 6px 20px rgba(12,35,60,0.14);
+  }
+
+  .steps-arrow:disabled {
+    opacity: 0.18;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .steps-arrow:disabled:hover {
+    color: var(--navy);
+    box-shadow: none;
+  }
+
+  .steps-arrow.prev { left: -0.4rem; }
+  .steps-arrow.next { right: -0.4rem; }
+
+  @media (max-width: 760px) {
+    .steps-arrow { display: none; }
+  }
 
   .step {
     flex: 0 0 100%;
@@ -863,6 +912,13 @@
       <p>Three steps. No spreadsheets, no setup.</p>
     </div>
 
+    <div class="steps-frame">
+    <button type="button" class="steps-arrow prev" aria-label="Previous step" disabled>
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button type="button" class="steps-arrow next" aria-label="Next step">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
     <div class="steps-carousel">
     <!-- STEP 1 -->
     <div class="step anim">
@@ -1015,6 +1071,7 @@
       </div>
     </div>
     </div><!-- /.steps-carousel -->
+    </div><!-- /.steps-frame -->
 
     <div class="steps-dots" role="tablist" aria-label="Step navigation">
       <button type="button" class="dot active" aria-label="Step 1" data-step="0"></button>
@@ -1101,25 +1158,38 @@
   }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.anim').forEach(el => obs.observe(el));
 
-  // Steps carousel — sync dots with scroll position; click dots to scroll
+  // Steps carousel — sync dots with scroll position; click dots/arrows to scroll
   (function () {
     const carousel = document.querySelector('.steps-carousel');
     if (!carousel) return;
     const steps = Array.from(carousel.querySelectorAll('.step'));
     const dots = Array.from(document.querySelectorAll('.steps-dots .dot'));
+    const arrowPrev = document.querySelector('.steps-arrow.prev');
+    const arrowNext = document.querySelector('.steps-arrow.next');
     if (!steps.length || !dots.length) return;
 
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => {
-        steps[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      });
-    });
+    let activeIdx = 0;
+
+    function setActive(idx) {
+      activeIdx = idx;
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      if (arrowPrev) arrowPrev.disabled = idx <= 0;
+      if (arrowNext) arrowNext.disabled = idx >= steps.length - 1;
+    }
+
+    function scrollToStep(idx) {
+      if (idx < 0 || idx >= steps.length) return;
+      steps[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+
+    dots.forEach((dot, idx) => dot.addEventListener('click', () => scrollToStep(idx)));
+    if (arrowPrev) arrowPrev.addEventListener('click', () => scrollToStep(activeIdx - 1));
+    if (arrowNext) arrowNext.addEventListener('click', () => scrollToStep(activeIdx + 1));
 
     const stepObs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting && e.intersectionRatio >= 0.5) {
-          const idx = steps.indexOf(e.target);
-          dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+          setActive(steps.indexOf(e.target));
         }
       });
     }, { root: carousel, threshold: [0.5] });

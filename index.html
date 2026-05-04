@@ -561,87 +561,103 @@
     margin-bottom: 2rem;
   }
 
-  .compare-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+  /* Outcomes table — full distribution of payouts across 0/1/2/3 hits */
+  .outcomes-wrapper {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: white;
     text-align: left;
   }
 
-  .compare-col {
+  .outcomes {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .outcomes th, .outcomes td {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  .outcomes thead th {
     background: var(--bg-soft);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.6rem 1.4rem;
-    display: flex;
-    flex-direction: column;
+    border-bottom: 2px solid var(--border);
+    vertical-align: top;
   }
 
-  .compare-col.win {
-    background: white;
-    border-color: var(--cyan);
-    box-shadow: 0 8px 24px rgba(0,184,245,0.12);
-  }
-
-  .compare-tag {
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-2);
-    margin-bottom: 0.6rem;
-  }
-
-  .compare-col.win .compare-tag { color: var(--cyan); }
-
-  .compare-col { text-align: center; padding: 2rem 1.6rem; }
-
-  .compare-mega {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: clamp(2.6rem, 7vw, 3.4rem);
-    font-weight: 800;
-    line-height: 1;
+  .outcomes thead th .col-label {
+    display: block;
     color: var(--navy);
-    opacity: 0.55;
-    margin: 0.6rem 0 0.4rem;
+    font-weight: 800;
+    font-size: 0.95rem;
   }
 
-  .compare-col.win .compare-mega { color: var(--green); opacity: 1; }
-
-  .compare-sub {
-    font-size: 0.72rem;
-    color: var(--text-2);
-    letter-spacing: 1.4px;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-bottom: 1.2rem;
-  }
-
-  .compare-net {
-    display: inline-block;
+  .outcomes thead th .col-sub {
+    display: block;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.88rem;
+    font-weight: 600;
+    font-size: 0.78rem;
+    color: var(--text-2);
+    margin-top: 0.2rem;
+  }
+
+  .outcomes tbody tr {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .outcomes tbody tr:last-child { border-bottom: none; }
+
+  .outcomes .row-label {
     font-weight: 700;
-    padding: 0.4rem 0.85rem;
-    border-radius: 100px;
-    margin-bottom: 1.4rem;
+    color: var(--navy);
+    font-size: 0.95rem;
   }
 
-  .compare-net.negative {
-    background: rgba(239,68,68,0.10);
-    color: var(--red);
+  .outcomes .row-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-2);
+    margin-left: 0.4rem;
+    font-style: italic;
   }
 
-  .compare-net.positive {
-    background: var(--green-light);
-    color: var(--green);
+  .outcomes .amt {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 1.05rem;
   }
 
-  .compare-foot {
-    font-size: 0.9rem;
+  .outcomes .amt.loss { color: var(--text-3); }
+  .outcomes .amt.win  { color: var(--green); }
+
+  .outcomes tr.highlight { background: var(--cyan-soft); }
+  .outcomes tr.highlight .row-label { color: var(--blue); }
+  .outcomes tr.highlight .row-tag { color: var(--blue); font-style: normal; }
+  .outcomes tr.highlight .amt.loss { color: var(--red); }
+  .outcomes tr.highlight .amt.win  { color: var(--green); font-size: 1.2rem; }
+
+  .outcomes-foot {
+    font-size: 0.95rem;
     color: var(--text-2);
     line-height: 1.55;
-    margin: 0;
+    margin: 1.4rem auto 0;
+    max-width: 580px;
+    text-align: center;
+  }
+
+  .outcomes-foot strong { color: var(--navy); font-weight: 700; }
+
+  @media (max-width: 600px) {
+    .outcomes th, .outcomes td { padding: 0.7rem 0.6rem; }
+    .outcomes .amt { font-size: 0.92rem; }
+    .outcomes tr.highlight .amt.win { font-size: 1.02rem; }
+    .outcomes .row-tag { display: none; }
+    .outcomes .row-label { font-size: 0.88rem; }
+    .outcomes thead th .col-label { font-size: 0.85rem; }
+    .outcomes thead th .col-sub { font-size: 0.7rem; }
   }
 
   /* --- DISTRIBUTION CALLOUT --- */
@@ -813,7 +829,6 @@
     .step, .step.flip { grid-template-columns: 1fr; gap: 1.5rem; direction: ltr; }
     .step > * { direction: ltr; }
     .problem-stat { gap: 2rem; }
-    .compare-grid { grid-template-columns: 1fr; }
     .footer-links { flex-wrap: wrap; gap: 1rem; }
     .hero { padding-bottom: 2.5rem; }
   }
@@ -1087,23 +1102,49 @@
 <!-- QUICK EXAMPLE -->
 <section class="example anim" id="example">
   <h2>Why it matters</h2>
-  <p>You like 3 NBA games. $100 per ticket. 2 of 3 hit, 1 misses.</p>
-  <div class="compare-grid">
-    <div class="compare-col">
-      <div class="compare-tag">Traditional parlay</div>
-      <div class="compare-mega">$0</div>
-      <div class="compare-sub">Cash returned</div>
-      <div class="compare-net negative">&minus;$100 net</div>
-      <div class="compare-foot">$100 on a single 3-leg parlay. One miss kills the ticket.</div>
-    </div>
-    <div class="compare-col win">
-      <div class="compare-tag">With ParlAid&trade;</div>
-      <div class="compare-mega">$701.93</div>
-      <div class="compare-sub">Cash returned</div>
-      <div class="compare-net positive">+$301.93 net &middot; +75% ROI</div>
-      <div class="compare-foot">$100 &times; 4 tickets covering every 2-of-3 combination. When any 2 hit, one ticket cashes.</div>
-    </div>
+  <p>Same 3 picks. Same odds. Traditional parlays only pay on a perfect 3-of-3. ParlAid pays whenever you hit at least 2.</p>
+  <div class="outcomes-wrapper">
+    <table class="outcomes">
+      <thead>
+        <tr>
+          <th></th>
+          <th>
+            <span class="col-label">Traditional</span>
+            <span class="col-sub">$100 / 1 ticket</span>
+          </th>
+          <th>
+            <span class="col-label">With ParlAid&trade;</span>
+            <span class="col-sub">$100 &times; 4 tickets</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="row-label">0 of 3 hit</td>
+          <td class="amt loss">&minus;$100</td>
+          <td class="amt loss">&minus;$400</td>
+        </tr>
+        <tr>
+          <td class="row-label">1 of 3 hit</td>
+          <td class="amt loss">&minus;$100</td>
+          <td class="amt loss">&minus;$400</td>
+        </tr>
+        <tr class="highlight">
+          <td class="row-label">2 of 3 hit <span class="row-tag">the &ldquo;almost&rdquo;</span></td>
+          <td class="amt loss">&minus;$100</td>
+          <td class="amt win">+$301.93</td>
+        </tr>
+        <tr>
+          <td class="row-label">3 of 3 hit</td>
+          <td class="amt win">+$601.93</td>
+          <td class="amt win">+$301.93</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+  <p class="outcomes-foot">
+    Most parlays die on the &ldquo;almost&rdquo; nights. <strong>ParlAid trades a smaller upside on a perfect 3-of-3 for a payout you actually cash on the close calls.</strong>
+  </p>
 
   <div class="extras">
     <div class="extras-headline">Then we <span class="emph">place each ticket</span> at the best odds.</div>

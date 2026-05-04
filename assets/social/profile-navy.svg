@@ -1,0 +1,6 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1024" height="1024" fill="#0C233C"/>
+  <text x="262" y="660" font-family="Helvetica, Arial, sans-serif" font-weight="bold" font-size="420" fill="white">P</text>
+  <text x="492" y="660" font-family="Helvetica, Arial, sans-serif" font-weight="bold" font-size="420" fill="#00B8F5">A</text>
+  <polygon points="630,605 658,635 630,665 602,635" fill="#00B8F5"/>
+</svg>

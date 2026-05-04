@@ -62,6 +62,11 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Avoid orphans/widows in marketing copy. Progressive enhancement —
+     older browsers fall back to default wrap. */
+  h1, h2, h3, .extras-headline { text-wrap: balance; }
+  p, .hero-tagline, .extras-sub, .outcomes-foot, .outcomes-note { text-wrap: pretty; }
+
   /* --- NAV --- */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -1166,7 +1171,7 @@
 
   <div class="extras">
     <div class="extras-headline">Then we <span class="emph">place every ticket</span> at the best odds &mdash; covered or traditional.</div>
-    <div class="extras-sub">Whether you take ParlAid&rsquo;s covered set or stick with a single traditional parlay, we scan every partnered sportsbook for each ticket and route you to the one paying the most. One tap per ticket &mdash; no copying numbers between apps.</div>
+    <div class="extras-sub">Take our covered set or place a single traditional parlay &mdash; either way we scan every partnered sportsbook and route each ticket to the best price. One tap, no copying numbers.</div>
     <div class="extras-books">
       <span class="book-chip">FanDuel</span>
       <span class="book-chip">DraftKings</span>

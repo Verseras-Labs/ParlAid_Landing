@@ -365,10 +365,12 @@
     box-shadow: none;
   }
 
-  .steps-arrow.prev { left: -2rem; }
-  .steps-arrow.next { right: -2rem; }
+  .steps-arrow.prev { left: -3.5rem; }
+  .steps-arrow.next { right: -3.5rem; }
 
-  @media (max-width: 760px) {
+  /* Hide arrows when viewport gets too narrow to fit them outside the carousel
+     without clipping (steps-inner caps at 900px; arrows need ~56px outer room). */
+  @media (max-width: 980px) {
     .steps-arrow { display: none; }
   }
 

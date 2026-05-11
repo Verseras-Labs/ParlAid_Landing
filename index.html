@@ -129,6 +129,17 @@
     margin: 0 auto;
   }
 
+  /* --- Video slide inside the steps carousel --- */
+  .step-video-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .step-video-frame .showcase-frame {
+    max-width: 300px;
+    width: 100%;
+  }
+
   h1.hero-lockup {
     margin: 0 0 0.8rem;
     line-height: 1;
@@ -182,6 +193,42 @@
   .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,184,245,0.35); }
 
   @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+  /* --- SHOWCASE: 30s vertical video --- */
+  .showcase {
+    padding: 1rem 1.5rem 3.5rem;
+    text-align: center;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .showcase-heading {
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text-2);
+    margin-bottom: 1.25rem;
+    text-transform: uppercase;
+  }
+
+  .showcase-frame {
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 9 / 16;
+    margin: 0 auto;
+    border-radius: 28px;
+    overflow: hidden;
+    background: var(--navy);
+    box-shadow: 0 28px 70px rgba(0, 184, 245, 0.18), 0 0 0 1px rgba(12, 35, 60, 0.08);
+    animation: fadeUp 0.5s ease-out 0.2s both;
+  }
+
+  .showcase-video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: var(--navy);
+  }
 
   /* --- SPORTS STRIP (auto-scrolling marquee) --- */
   .sports-strip {
@@ -957,6 +1004,28 @@
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
     </button>
     <div class="steps-carousel">
+    <!-- OVERVIEW (video) -->
+    <div class="step step-video anim">
+      <div>
+        <div class="step-badge">In 30 seconds</div>
+        <h3>See it in motion</h3>
+        <p>Watch the full flow &mdash; from picking three games to seeing the covered tickets pay off when 2 of 3 hit.</p>
+      </div>
+      <div class="step-video-frame">
+        <div class="showcase-frame">
+          <video
+            class="showcase-video"
+            controls
+            preload="metadata"
+            playsinline
+            poster="assets/parlaid-ad-30s-poster.jpg"
+          >
+            <source src="assets/parlaid-ad-30s.mp4" type="video/mp4" />
+            Your browser doesn&rsquo;t support inline video.
+          </video>
+        </div>
+      </div>
+    </div>
     <!-- STEP 1 -->
     <div class="step anim">
       <div>
@@ -1111,9 +1180,10 @@
     </div><!-- /.steps-frame -->
 
     <div class="steps-dots" role="tablist" aria-label="Step navigation">
-      <button type="button" class="dot active" aria-label="Step 1" data-step="0"></button>
-      <button type="button" class="dot" aria-label="Step 2" data-step="1"></button>
-      <button type="button" class="dot" aria-label="Step 3" data-step="2"></button>
+      <button type="button" class="dot active" aria-label="30-second overview" data-step="0"></button>
+      <button type="button" class="dot" aria-label="Step 1" data-step="1"></button>
+      <button type="button" class="dot" aria-label="Step 2" data-step="2"></button>
+      <button type="button" class="dot" aria-label="Step 3" data-step="3"></button>
     </div>
 
   </div>

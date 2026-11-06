@@ -41,4 +41,5 @@ The app's own log is `../parlaid-app/docs/DECISIONS.md`; brand facts shared by b
 | When | What happened | Lesson |
 |---|---|---|
 | 2026-05 | Marketing edits were committed to `landing/` inside the APP repo, which deploys nowhere. | The site has exactly one source: this repo. The app's `landing/` folder is dead and stays untouched. |
+| 2026-11-06 | Pushed the brand redesign after the owner's "push" on the preview; the owner saw it live and reverted it as "way off". | A preview link is not the same as the owner seeing the page on their own phone at parlaid.app. Before the next push: put the draft at a separate test address (Cloudflare preview branch) and have the owner look there first. |
 | 2026-05 | ~20 Netlify deploys in one sitting paused the site. | Batch small copy edits into one push; Cloudflare removed the limit but the habit is still right because every push is live. |

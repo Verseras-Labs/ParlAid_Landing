@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="ParlAid">
-  <rect width="512" height="512" rx="113" fill="#0C233C"/>
-  <path fill="#FFFFFF" fill-rule="evenodd" d="M88 140H160.0a78.0 78.0 0 0 1 0 156H138V372H88zM138 190V246H158.0a28.0 28.0 0 0 0 0 -56z"/>
-  <path fill="#00B8F5" d="M309 140L339 140L424 372L368 372L324 252L280 372L224 372z"/>
-  <path fill="#FFFFFF" d="M324 304L341 330L324 356L307 330z"/>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" rx="30" fill="#0C233C"/>
+  <text x="40" y="120" font-family="Arial, sans-serif" font-size="80" fill="white">P</text>
+  <text x="90" y="120" font-family="Arial, sans-serif" font-size="80" fill="#00B8F5">A</text>
+  <circle cx="110" cy="130" r="6" fill="#00B8F5"/>
 </svg>
